@@ -9,35 +9,37 @@
                 btn = document.getElementById("button1");
 
                 btn.onclick = function() {
-                    //get values from form
-                    a = parseInt(document.form1.n1.value);
-                    b = parseInt(document.form1.n2.value);
+                    if (validate()) {
+                        //get values from form
+                        a = parseInt(document.form1.n1.value);
+                        b = parseInt(document.form1.n2.value);
 
-                    //find factors of a, sum of all the factors
-                    aFactors = findAllFactors(a);
-                    aSum = sumArray(aFactors);
+                        //find factors of a, sum of all the factors
+                        aFactors = findAllFactors(a);
+                        aSum = sumArray(aFactors);
 
-                    //find factors of b, sum of all the factors
-                    bFactors = findAllFactors(b);
-                    bSum = sumArray(bFactors);
+                        //find factors of b, sum of all the factors
+                        bFactors = findAllFactors(b);
+                        bSum = sumArray(bFactors);
 
-                    //default: the numbers are not amicable
-                    amicable = "The numbers: " + a + " and " + b + " are not amicable<br/>";
+                        //default: the numbers are not amicable
+                        amicable = "The numbers: " + a + " and " + b + " are not amicable<br/>";
 
-                    //check if numbers are amicable, update message
-                    if (isAmicable(a, bSum) && isAmicable(b, aSum)) {
-                        amicable = "The numbers: " + a + " and " + b + " are amicable<br/>";
+                        //check if numbers are amicable, update message
+                        if (isAmicable(a, bSum) && isAmicable(b, aSum)) {
+                            amicable = "The numbers: " + a + " and " + b + " are amicable<br/>";
+                        }
+
+                        //create string to display factors of each number
+                        factorList = "Factors of " + a + ": " + aFactors + "\n" + 
+                                    "Factors of " + b + ": " + bFactors;
+
+                        //display div with amicable result
+                        document.getElementById("result").innerHTML = amicable;
+
+                        //display div showing factors of each number
+                        alert(factorList)
                     }
-
-                    //create string to display factors of each number
-                    factorList = "Factors of " + a + ": " + aFactors + "<br/><br/>" + 
-                                "Factors of " + b + ": " + bFactors;
-
-                    //display div with amicable result
-                    document.getElementById("result").innerHTML = amicable;
-
-                    //display div showing factors of each number
-                    document.getElementById("factor").innerHTML = factorList;
                 }
             }
 
@@ -112,9 +114,6 @@
                 <div class = "result" id = "result">&nbsp;</div>
             </div>
             <br/>
-            <div class="box">
-                <div class = "factor" id = "factor">&nbsp;</div>
-            </div>
             <br/>
         </form>
     </body>
